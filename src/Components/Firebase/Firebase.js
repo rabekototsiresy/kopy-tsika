@@ -30,6 +30,14 @@ class Firebase {
     return this.db.collection('Employe').add(informations)
   }
   
+  updateUser = (informations,collection,idDoc) =>{
+    return this.db.doc(`${collection}/${idDoc}`).update(informations)
+  }
+
+  getUserByIdDoc = (collection,idDoc) =>{
+    return this.db.doc(`${collection}/${idDoc}`).get()
+  }
+  
   
 
 
