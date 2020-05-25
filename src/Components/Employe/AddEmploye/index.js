@@ -90,6 +90,7 @@ const AddEmploye = () => {
       id="password" 
       label="Password" 
       variant="outlined" 
+      type="password"
       onChange={handleChange}
       value={password}
       />

@@ -130,7 +130,7 @@ const displayNavCivil = listNavCivil.map( (nav,index)=>(
               <Route path="/employe/update-civil/:idDoc" component={UpdateCivil} />
               <Route path="/employe/register-employe" component={AddEmploye} />
               <Route path="/employe/employe-list" component={ListEmploye} />
-              <Route path="/employe/update-employe" component={UpdateEmploye} />
+              <Route path="/employe/update-employe/:idDoc" component={UpdateEmploye} />
               <Route path="/employe/request-list" component={RequestList} />
               <Route path="/employe/sign" component={Sign} />
               <Route path="/civil/do-request" component={DoRequest} />
