@@ -28,8 +28,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Search = () => {
   const classes = useStyles();
+  const data =  {
+    id: '',
+    firstName: '',
+    birth: '',
+    at: '',
+    idDoc: ''
+  }
   const [uid, setUid] = useState('')
-  const [userFetched, setUserFetched] = useState([])
+  const [userFetched, setUserFetched] = useState(data)
   const firebase = useContext(FirebaseContext)
   const handleUid = e=>{
     setUid(e.target.value)
@@ -40,11 +47,23 @@ const handleSubmit = e=>{
   .then((collection) => {
     if (collection) {
       let tabTemp = []
-      collection.docs.map(doc => tabTemp.push(doc.data()))
+      collection.docs.map(doc => {
+       
+        tabTemp.push({info: doc.data(),idDoc: doc.id})
+      })
       if(tabTemp !== 0){
-        const result = tabTemp.filter( user=> user.id == uid )
-        setUserFetched(result)
-        console.log(userFetched)
+       
+         const result = tabTemp.filter( user=> user.info.id == uid )
+         setUserFetched({
+          id: result[0].info.id,
+          firstName:result[0].info.firstName,
+          birth: result[0].info.birth,
+          at: result[0].info.at,
+          idDoc: result[0].idDoc
+         })
+        
+      
+       
       }else{
         console.log('y a pase de user')
       }
@@ -56,23 +75,23 @@ const handleSubmit = e=>{
   .catch( err=>{
     console.log(" une erreur est survenu")
   })
-  console.log(uid)
+ 
 }
 
 
 
-const displayUser = userFetched.length !== 0 ? (
+const displayUser = userFetched.idDoc !== ''  ? (
   <Table aria-label="simple table">
       
         <TableBody>
             <TableRow>
-            <TableCell >{userFetched[0].id}</TableCell>
-            <TableCell >{userFetched[0].firstName}</TableCell>
-            <TableCell >{userFetched[0].birth}</TableCell>
-            <TableCell >{userFetched[0].at}</TableCell>
+            <TableCell >{userFetched.id}</TableCell>
+            <TableCell >{userFetched.firstName}</TableCell>
+            <TableCell >{userFetched.birth}</TableCell>
+            <TableCell >{userFetched.at}</TableCell>
             <TableCell >
            
-             <Link to="/employe/update-civil">
+             <Link to={`/employe/update-civil/${userFetched.idDoc}`}>
              <IconButton color="primary" size="small"  aria-label="add to shopping cart">
               <EditOutlinedIcon />
       </IconButton>

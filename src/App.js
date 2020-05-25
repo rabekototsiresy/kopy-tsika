@@ -127,7 +127,7 @@ const displayNavCivil = listNavCivil.map( (nav,index)=>(
             <Grid item md={10} container  direction="column"  >
               <Route path="/employe/register-civil" component={AddBirth} />
               <Route path="/employe/search-civil" component={Search} />
-              <Route path="/employe/update-civil" component={UpdateCivil} />
+              <Route path="/employe/update-civil/:idDoc" component={UpdateCivil} />
               <Route path="/employe/register-employe" component={AddEmploye} />
               <Route path="/employe/employe-list" component={ListEmploye} />
               <Route path="/employe/update-employe" component={UpdateEmploye} />

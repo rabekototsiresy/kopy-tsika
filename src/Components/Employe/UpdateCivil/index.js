@@ -10,11 +10,13 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-const UpdateCivil = () => {
+const UpdateCivil = (props) => {
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'))
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+  console.log(props)
   return (
 
     <Grid item md={12} style={{padding: '20px'}}>
