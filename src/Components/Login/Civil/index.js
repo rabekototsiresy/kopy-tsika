@@ -46,13 +46,13 @@ const Civil = (props) => {
   const handleSubmit = e=>{
     console.log("handleSumbit")
     e.preventDefault()
-    firebase.getUser("UserCivil")
+    firebase.getUser("Civil")
     .then((collection) => {
       if (collection) {
         let tabTemp = []
         collection.docs.map(doc => tabTemp.push(doc.data()))
         if(tabTemp !== 0){
-          const auth = tabTemp.filter( user=> user.uid == userId )
+          const auth = tabTemp.filter( user=> user.id == userId )
           console.log(auth)
           if(auth.length !== 0){
             setError(false)
