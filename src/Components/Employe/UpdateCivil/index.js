@@ -6,7 +6,7 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
 import {FirebaseContext} from '../../Firebase'
-
+import {Link} from 'react-router-dom'
 const UpdateCivil = (props) => {
   const [informations, setInformations] = useState({})
   const data = {
@@ -55,6 +55,7 @@ const handleSumbit = (e)=>{
   .then( user=>{
     alert("CIVIL UPDATED SUCCEFUL ")
     setInformations(data)
+    props.history.push('/employe/search-civil')
     
   })
   .catch( err=>{
@@ -145,6 +146,7 @@ const {firstName,lastName,birth,at,dadName,momName}  = informations
         />
         </Grid>
         <Grid item md={12}>
+          
           <Button 
           variant="contained" 
           color="primary"
@@ -152,6 +154,7 @@ const {firstName,lastName,birth,at,dadName,momName}  = informations
           >
             METTRE A JOUR
           </Button>
+        
         </Grid>
           
           
