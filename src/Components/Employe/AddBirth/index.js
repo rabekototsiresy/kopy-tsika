@@ -1,15 +1,11 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
-import DateFnsUtils from '@date-io/date-fns';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+import { v4 as uuidv4 } from 'uuid';
+import {FirebaseContext} from '../../Firebase'
 const AddBirth = (props) => {
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'))
   const handleDateChange = (date) => {
@@ -23,12 +19,27 @@ const data = {
   birth: '',
   at: '',
   dadName: '',
-  momName: ''
+  momName: '',
+  id: uuidv4()
 }
 
 const [informations, setInformations] = useState(data)
+const firebase = useContext(FirebaseContext)
 const handleChange= e=>{
   setInformations({...informations,[e.target.id]: e.target.value})
+}
+
+const handleSumbit = (e)=>{
+  e.preventDefault()
+  firebase.createCivil(informations)
+  .then( user=>{
+    alert("ID"+informations.id)
+    setInformations(data)
+  })
+  .catch( err=>{
+    alert('une erreur s\'est produite')
+    setInformations(data)
+  })
 }
 const {firstName,lastName,birth,at,dadName,momName}  = informations
   return (
@@ -36,7 +47,12 @@ const {firstName,lastName,birth,at,dadName,momName}  = informations
     <Grid item md={12} style={{padding: '20px'}}>
       <h1>AJOUT NEE</h1>
       <Divider />
-      <form noValidate autoComplete="off" style={{marginTop : '20px'}}>
+      <form 
+      noValidate 
+      autoComplete="off" 
+      style={{marginTop : '20px'}}
+      onSubmit={handleSumbit}
+      >
       <Grid item md={12} container direction="row" spacing={2}>
         
         <Grid item>
@@ -107,6 +123,7 @@ const {firstName,lastName,birth,at,dadName,momName}  = informations
           <Button 
           variant="contained" 
           color="primary"
+          type="submit"
           >
             Enregistrer
           </Button>

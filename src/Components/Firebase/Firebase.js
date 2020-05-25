@@ -22,6 +22,11 @@ class Firebase {
     return this.db.collection(collection).get()
   }
 
+  createCivil = (informations) =>{
+    return this.db.collection('Civil').add(informations)
+  }
+
+
 }
 
 export default Firebase
