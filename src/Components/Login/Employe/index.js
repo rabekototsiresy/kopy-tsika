@@ -48,7 +48,7 @@ const Employe = (props) => {
   }
   const handleSubmit = e=>{
     e.preventDefault()
-    firebase.getUser("UserEmploye")
+    firebase.getUser("Employe")
     .then((collection) => {
       if (collection) {
         let tabTemp = []
