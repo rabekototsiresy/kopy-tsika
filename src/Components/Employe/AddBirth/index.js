@@ -33,7 +33,7 @@ const handleSumbit = (e)=>{
   e.preventDefault()
   firebase.createCivil(informations)
   .then( user=>{
-    alert("ID"+informations.id)
+    alert("CIVIL ADDED SUCCEFUL \n VOTRE ID : "+informations.id)
     setInformations(data)
   })
   .catch( err=>{
@@ -133,6 +133,7 @@ const {firstName,lastName,birth,at,dadName,momName}  = informations
        
       </Grid>
       </form>
+      {informations.id && (<><h4>Last Id: {informations.id}</h4>  <i>Mba i - copiena azy rehefa manao test alo de napetrako eto fa tsy afaka copiena ilay popup</i></>)}
     </Grid>
 
   )

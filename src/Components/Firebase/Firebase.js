@@ -25,6 +25,7 @@ class Firebase {
   createCivil = (informations) =>{
     return this.db.collection('Civil').add(informations)
   }
+  
 
 
 }
