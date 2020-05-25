@@ -2,13 +2,13 @@ import  app  from 'firebase/app'
 import firestore from 'firebase/firestore'
 
 const config = {
-  apiKey: "AIzaSyBRCitllglH8RDKgR9-dNH4oy6JZ9C5a80",
-  authDomain: "bmarketing-86d79.firebaseapp.com",
-  databaseURL: "https://bmarketing-86d79.firebaseio.com",
-  projectId: "bmarketing-86d79",
-  storageBucket: "bmarketing-86d79.appspot.com",
-  messagingSenderId: "1017009577518",
-  appId: "1:1017009577518:web:970fbc4bb9c4c26fb609bf"
+  apiKey: "AIzaSyB47_CIZaLv2EP3dgAbBafPul-iez-EAcQ",
+  authDomain: "kopia-5f395.firebaseapp.com",
+  databaseURL: "https://kopia-5f395.firebaseio.com",
+  projectId: "kopia-5f395",
+  storageBucket: "kopia-5f395.appspot.com",
+  messagingSenderId: "321601803044",
+  appId: "1:321601803044:web:4dda72b5ca93a8bb83d9b1"
 }
 
 
@@ -18,6 +18,29 @@ class Firebase {
     this.db = app.firestore()
   }
 
+  getUser = collection=>{
+    return this.db.collection(collection).get()
+  }
+
+}
+
+export default Firebase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 
   addPass = password =>{
     return this.db.collection('Password').add({
       password: password
@@ -59,6 +82,4 @@ class Firebase {
 
   getValidation = ()=>
     this.db.collection('Validation').get()
-}
-
-export default Firebase
+ */

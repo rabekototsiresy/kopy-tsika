@@ -11,10 +11,17 @@
   <button onclick="closeWin();">close</button>
   
   <script>
-    const closeWin = ()=>{
-      window.close()
-      
-    }  
+    const tab= [
+      {
+        username: 'romule',
+        password: '123'
+      },
+      {
+        username: 'rabe',
+        password: '236'
+      }
+    ]
+    console.log(tab.filter( user=> user.username == 'romule' && user.password === "12d3"))
   </script>
 </body>
 </html>

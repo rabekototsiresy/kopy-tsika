@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Grid';
@@ -10,11 +10,27 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
-const AddBirth = () => {
+const AddBirth = (props) => {
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'))
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+
+
+const data = {
+  firstName: '',
+  lastName: '',
+  birth: '',
+  at: '',
+  dadName: '',
+  momName: ''
+}
+
+const [informations, setInformations] = useState(data)
+const handleChange= e=>{
+  setInformations({...informations,[e.target.id]: e.target.value})
+}
+const {firstName,lastName,birth,at,dadName,momName}  = informations
   return (
 
     <Grid item md={12} style={{padding: '20px'}}>
@@ -24,35 +40,74 @@ const AddBirth = () => {
       <Grid item md={12} container direction="row" spacing={2}>
         
         <Grid item>
-        <TextField id="name" label="Nom" variant="outlined" />
+        <TextField 
+        id="firstName" 
+        label="Nom" 
+        variant="outlined" 
+        onChange={handleChange}
+        value={firstName}
+        />
         </Grid>
         <Grid item md={4}>
-        <TextField id="firstName" label="Prénom" variant="outlined" style={{width: '100%'}} />
+        <TextField 
+        onChange={handleChange}
+        id="lastName" 
+        label="Prénom" 
+        variant="outlined" 
+        style={{width: '100%'}}
+        id="lastName"  
+        value={lastName}
+        />
         </Grid>
         <Grid item>
         <TextField
-    id="date"
-    label="Date"
-    type="date"
-    defaultValue="2017-05-24"
- 
-    InputLabelProps={{
-      shrink: true,
-    }}
-  />
+        onChange={handleChange}
+          id="birth"
+          label="Date"
+          type="date"
+          value={birth}
+      
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
         </Grid>
         <Grid item>
-        <TextField id="lieu" label="Lieu de naissance" variant="outlined"  />
+        <TextField 
+        onChange={handleChange}
+        id="at" 
+        label="Lieu de naissance"
+        variant="outlined" 
+        value={at} 
+        />
         </Grid>
         <Grid item md={6}>
-        <TextField id="nomDuPere" label="Nom du pere" variant="outlined" style={{width: '100%'}}/>
+        <TextField 
+        onChange={handleChange}
+        id="dadName" 
+        label="Nom du pere" 
+        variant="outlined" 
+        style={{width: '100%'}}
+        value={dadName}
+
+        />
       
         </Grid>
         <Grid item md={6}>
-        <TextField id="nomMere-basic" label="Nom de la mère" variant="outlined" style={{width: '100%'}}/>
+        <TextField 
+        onChange={handleChange}
+        id="momName" 
+        label="Nom de la mère" 
+        variant="outlined" 
+        style={{width: '100%'}}
+        value={momName}
+        />
         </Grid>
         <Grid item md={12}>
-          <Button variant="contained" color="primary">
+          <Button 
+          variant="contained" 
+          color="primary"
+          >
             Enregistrer
           </Button>
         </Grid>

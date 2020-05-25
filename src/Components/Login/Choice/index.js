@@ -10,7 +10,7 @@ const Choice = (props) => {
       value={userVal}
       onChange={getChoice}
       name="Who"
-      style={{ marginTop: '20px' }}
+      style={{ marginTop: '40px' }}
     >
       <option value="">Choisissez</option>
       {listUser}

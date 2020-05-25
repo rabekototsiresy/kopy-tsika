@@ -9,7 +9,7 @@ import Choice from './Choice';
 
 
 
-const Login = () => {
+const Login = (props) => {
 
   const [userList, setUser] = useState(['civil', 'employe'])
   const [userVal, setUserVal] = useState('')
@@ -22,7 +22,7 @@ const Login = () => {
 
   //get Form Login
 
-  const componentDisplayed = userVal == 'civil' ? <Civil /> : <Employe />
+  const componentDisplayed = userVal == 'civil' ? <Civil props={props}  /> : <Employe props={props} />
 
   return (
     <Grid

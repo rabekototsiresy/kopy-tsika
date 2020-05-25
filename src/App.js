@@ -1,5 +1,5 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch,Link } from 'react-router-dom'
+import React,{useState,Fragment,useEffect} from 'react'
+import { BrowserRouter, Route, Switch,Link ,Redirect} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import Login from './Components/Login';
@@ -27,8 +27,6 @@ const useStyles = makeStyles((theme) => ({
     // border: '2px solid black',
     padding: '20px 50px',
     
-    
-
   }
   
 }));
@@ -36,7 +34,68 @@ const useStyles = makeStyles((theme) => ({
 
 
 const App = () => {
+  useEffect(() => {
+    console.log("APP"+sessionStorage.getItem('category'))
+  })
+
   const classes = useStyles();
+const listEmp = [
+  {
+    description: 'Register Civil',
+    link: '/employe/register-civil'
+  },
+  {
+    description: 'Search civil',
+    link: '/employe/search-civil'
+  },
+  {
+    description: 'Register Employe',
+    link: '/employe/register-employe'
+  },
+  {
+    description: 'List Employe',
+    link: '/employe/employe-list'
+  },
+  {
+    description: 'Liste Demande',
+    link: '/employe/request-list'
+  }
+]
+const listCiv = [
+  {
+    description: 'Faire Demande',
+    link: '/civil/do-request'
+  },
+  {
+    description: 'Liste Demande',
+    link: '/civil/request-list"'
+  }
+]
+const [listNavEmploye,setListNavEmploye ] = useState(listEmp)
+const [listNavCivil, setlistCiv] = useState(listCiv)
+
+const displayNavEmploye = listNavEmploye.map( (nav,index)=>(
+<Fragment key={index}>
+<Link to={`${nav.link}`} style={{textDecoration: 'none'}}>
+                <Grid className={classes.link}>
+                  {nav.description}
+              </Grid>
+              </Link>
+              <Divider />
+</Fragment>
+))
+
+const displayNavCivil = listNavCivil.map( (nav,index)=>(
+  <Fragment key={index}>
+  <Link to={`${nav.link}`} style={{textDecoration: 'none'}}>
+                  <Grid className={classes.link}>
+                    {nav.description}
+                </Grid>
+                </Link>
+                <Divider />
+  </Fragment>
+  ))
+  
   return (
     <div>
       <BrowserRouter>
@@ -50,7 +109,7 @@ const App = () => {
             container
             direction="row"
             justify="flex-start"
-            style={{marginTop: '50px'}}
+            style={{marginTop: '65px'}}
             // alignItems="center"
           >
             <Grid item md={2} className={classes.main} container
@@ -59,48 +118,8 @@ const App = () => {
               
               
             >
-              <Link to="/employe/register-civil" style={{textDecoration: 'none'}}>
-                <Grid className={classes.link}>
-                  Register Civil
-              </Grid>
-              </Link>
-              <Divider />
-              <Link to="/employe/search-civil" style={{textDecoration: 'none'}}>
-                <Grid className={classes.link}>
-                  Search civil
-                </Grid>
-              </Link>
-              <Divider />
-              <Link to="/employe/register-employe" style={{textDecoration: 'none'}}>
-                <Grid className={classes.link}>
-                Register Employe
-                </Grid>
-              </Link>
-              <Divider />
-              <Link to="/employe/employe-list" style={{textDecoration: 'none'}}>
-                <Grid className={classes.link}>
-                List Employe
-                </Grid>
-              </Link>
-              <Divider />
-              <Link to="/employe/request-list" style={{textDecoration: 'none'}}>
-                <Grid className={classes.link}>
-                Liste Demande
-                </Grid>
-              </Link>
-              <Divider />
-              <Link to="/civil/do-request" style={{textDecoration: 'none'}}>
-                <Grid className={classes.link}>
-                Faire Demande
-                </Grid>
-              </Link>
-              <Divider />
-              <Link to="/civil/request-list" style={{textDecoration: 'none'}}>
-                <Grid className={classes.link}>
-                Liste Demande
-                </Grid>
-              </Link>
-              <Divider />
+              
+              {sessionStorage.getItem('category') == 'employe' ? displayNavEmploye : displayNavCivil }
 
 
             </Grid>
