@@ -9,7 +9,7 @@
     "@material-ui/lab": "^4.0.0-alpha.51",
     "@material-ui/pickers": "^3.2.10",
     "address": "^1.1.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cra-template": "1.0.3",
     "date-fns": "^2.14.0",
     "detector": "^2.5.0",
